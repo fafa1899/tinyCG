@@ -50,3 +50,7 @@ compile_commands.json
 
 # QtCreator local machine specific files for imported projects
 *creator.user*
+
+bin/*
+build-CGtest-Desktop_Qt_5_12_5_MSVC2017_64bit-Debug/*
+build-tinyCG-Desktop_Qt_5_12_5_MSVC2017_64bit-Debug/*
