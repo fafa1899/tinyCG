@@ -3,18 +3,25 @@
 #include <tinycg.h>
 #include <Vec2.hpp>
 #include <twoCGAL.h>
+#include <threeCGAL.h>
 
 using namespace std;
 using namespace tinyCG;
 
 int main(int argc, char *argv[])
 {
-    Vec2f O(1.0, 2.4f);
-    Vec2f E(10.2f, 11.5);
-    float d = 5;
-    Vec2f P;
+//    Vec2f O(1.0, 2.4f);
+//    Vec2f E(10.2f, 11.5);
+//    float d = 5;
+//    Vec2f P;
 
-    twoCGAL::CalPointFromLineWithDistance_F(O, E, d, P);
-    cout << "计算的点为：" << P.x()<<'\t' << P.y() << '\n';
-    cout << "验算距离是否为"<<d<<"：" <<(P-O).length()<< '\n';
+//    twoCGAL::CalPointFromLineWithDistance_F(O, E, d, P);
+//    cout << "计算的点为：" << P.x()<<'\t' << P.y() << '\n';
+//    cout << "验算距离是否为"<<d<<"：" <<(P-O).length()<< '\n';
+
+    Vec3d point(4, 0, 5);
+    Vec3d lineBegin(10, 10, 4);
+    Vec3d lineEnd(20, 30, 0);
+
+    cout<<threeCGAL::CalDistancePointAndLine(point, lineBegin, lineEnd)<<endl;
 }

@@ -17,9 +17,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp
 
-INCLUDEPATH += D:/Work/CG/tinyCG
+INCLUDEPATH += D:/Work/tinyCG/tinyCG
 
-LIBS += -LD:/Work/CG/bin -ltinyCG
+LIBS += -LD:/Work/tinyCG/bin -ltinyCG
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -33,6 +33,10 @@ public:
         else return (_v[1]<v._v[1]);
     }
 
+    //索引器
+    inline value_type& operator [] (int i) { return _v[i]; }
+    inline value_type operator [] (int i) const { return _v[i]; }
+
     //判断值是否正常
     inline bool valid() const { return !isNaN(); }
     inline bool isNaN() const { return _isnan(_v[0]) || _isnan(_v[1]); }
