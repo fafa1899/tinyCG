@@ -70,6 +70,20 @@ public:
                      _v[0]*rhs._v[1]-_v[1]*rhs._v[0]);
     }
 
+    //归一化向量，返回向量的先前长度。
+    inline value_type normalize()
+    {
+        value_type norm = length();
+        if (norm>0.0)
+        {
+            value_type inv = 1.0/norm;
+            _v[0] *= inv;
+            _v[1] *= inv;
+            _v[2] *= inv;
+        }
+        return( norm );
+    }
+
     //长度/模
     inline value_type length() const
     {

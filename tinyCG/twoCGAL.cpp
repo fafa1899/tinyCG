@@ -1,5 +1,6 @@
 #include "twoCGAL.h"
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -28,5 +29,27 @@ void twoCGAL::CalPointFromLineWithDistance_F(const Vec2f & O, const Vec2f & E, f
     CalPointFromLineWithDistance_T<float>(O, E, d, P);
 }
 
+
+
+//两矩形是否相交
+bool twoCGAL::RectIntersect(double minx1, double miny1,double maxx1, double maxy1,
+    double minx2, double miny2, double maxx2, double maxy2)
+{
+    bool flag;
+    double minx = std::max(minx1,   minx2);
+    double miny = std::max(miny1,   miny2);
+    double maxx = std::min(maxx1,   maxx2);
+    double maxy = std::min(maxy1,   maxy2);
+    if (minx>maxx||miny>maxy)
+    {
+        flag = false;
+    }
+    else
+    {
+        flag =true;
+    }
+
+    return flag;
+}
 
 }
