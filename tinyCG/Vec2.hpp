@@ -142,12 +142,17 @@ public:
         return( norm );
     }
 
-    //getter
+    //getter and setter
     inline value_type x() const { return _v[0]; }
     inline value_type y() const { return _v[1]; }
     inline value_type u() const { return _v[0]; }
     inline value_type v() const { return _v[1]; }
 
+	inline value_type& x() { return _v[0]; }
+	inline value_type& y() { return _v[1]; }
+	inline value_type& u() { return _v[0]; }
+	inline value_type& v() { return _v[1]; }
+	
     //Êä³ö
     friend std::ostream & operator<<(std::ostream & out, Vec2 & A)
     {
