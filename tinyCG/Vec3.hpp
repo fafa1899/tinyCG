@@ -23,8 +23,50 @@ public:
         _v[2] = zz;
     }
 
+	//比较函数，用于装载容器
+	inline bool operator == (const Vec3& v) const { return _v[0] == v._v[0] && _v[1] == v._v[1] && _v[2] == v._v[2]; }
+	inline bool operator != (const Vec3& v) const { return _v[0] != v._v[0] || _v[1] != v._v[1] || _v[2] != v._v[2]; }
+	inline bool operator <  (const Vec3& v) const
+	{
+		if (_v[0] < v._v[0]) return true;
+		else if (_v[0] > v._v[0]) return false;
+		else if (_v[1] < v._v[1]) return true;
+		else if (_v[1] > v._v[1]) return false;
+		else return (_v[2] < v._v[2]);
+	}
+
     //赋值
     inline void set(value_type x, value_type y, value_type z) {_v[0]=x; _v[1]=y; _v[2]=z;}
+
+    //和标量相乘
+    inline const Vec3 operator * (value_type rhs) const
+    {
+        return Vec3(_v[0]*rhs, _v[1]*rhs, _v[2]*rhs);
+    }
+
+    //和标量相乘
+    inline Vec3& operator *= (value_type rhs)
+    {
+        _v[0]*=rhs;
+        _v[1]*=rhs;
+        _v[2]*=rhs;
+        return *this;
+    }
+
+    //和标量相除
+    inline const Vec3 operator / (value_type rhs) const
+    {
+        return Vec3(_v[0]/rhs, _v[1]/rhs, _v[2]/rhs);
+    }
+
+    //和标量相除
+    inline Vec3& operator /= (value_type rhs)
+    {
+        _v[0]/=rhs;
+        _v[1]/=rhs;
+        _v[2]/=rhs;
+        return *this;
+    }
 
     //分量相加
     inline const Vec3 operator + (const Vec3& rhs) const
@@ -44,7 +86,7 @@ public:
     //分量相减
     inline const Vec3 operator - (const Vec3& rhs) const
     {
-        return Vec3d(_v[0]-rhs._v[0], _v[1]-rhs._v[1], _v[2]-rhs._v[2]);
+        return Vec3(_v[0]-rhs._v[0], _v[1]-rhs._v[1], _v[2]-rhs._v[2]);
     }
 
     //分量相减
@@ -65,7 +107,7 @@ public:
     //叉乘
     inline const Vec3 operator ^ (const Vec3& rhs) const
     {
-        return Vec3d(_v[1]*rhs._v[2]-_v[2]*rhs._v[1],
+        return Vec3(_v[1]*rhs._v[2]-_v[2]*rhs._v[1],
                      _v[2]*rhs._v[0]-_v[0]*rhs._v[2] ,
                      _v[0]*rhs._v[1]-_v[1]*rhs._v[0]);
     }
@@ -113,6 +155,7 @@ public:
 
 typedef Vec3<float> Vec3f;
 typedef Vec3<double> Vec3d;
+typedef Vec3<int> Vec3i;
 
 
 //class Vec3d

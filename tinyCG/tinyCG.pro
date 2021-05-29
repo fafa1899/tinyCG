@@ -18,17 +18,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Orthogon.cpp \
+    linesegment.cpp \
     threeCGAL.cpp \
     tinycg.cpp \
+    triangle.cpp \
     twoCGAL.cpp
 
 HEADERS += \
     Orthogon.hpp \
     Vec2.hpp \
     Vec3.hpp \
+    linesegment.hpp \
     threeCGAL.h \
     tinyCG_global.h \
     tinycg.h \
+    triangle.hpp \
     twoCGAL.h
 
 DESTDIR = $$PWD/../bin
