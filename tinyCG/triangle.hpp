@@ -3,6 +3,7 @@
 
 #include <Vec3.hpp>
 #include <algorithm>
+#include <iostream>
 
 namespace tinyCG {
 
@@ -95,18 +96,80 @@ public:
         Vec3<T> v2 = AB ^ AP;
 
         // v1 and v2 should point to the same direction
-        //return v1.Dot(v2) >= 0 ;
-        return v1 * v2 > 0 ;
+        return v1*v2 >= 0 ;
+        //return v1 * v2 > 0 ;
     }
 
-    // 判断点P是否在三角形ABC内(同向法)
+    // 判断点P是否在空间三角形内
+    bool PointInTriangle3D(Vec3<T>& P)
+    {
+        auto v0p = P - v0;
+        auto v0v1 = v1 - v0;
+        auto v0v2 = v2 - v0;
+
+        double D = v0v1.x() * v0v2.y() - v0v1.y() * v0v2.x();
+        if(D == 0.0)
+        {
+            return false;
+        }
+
+        double D1 = v0p.x() * v0v2.y() - v0p.y() * v0v2.x();
+        double D2 = v0v1.x() * v0p.y() - v0v1.y() * v0p.x();
+
+        double u = D1/D;
+        double v = D2/D;
+
+        double eps = v0v1.z() * u + v0v2.z() * v - P.z();
+        if(u >= 0 && v >= 0 && u + v <= 1 && abs(eps) < 0.000001)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    // 判断平面点P是否在平面三角形内(同向法)
     bool PointInTriangle2D(Vec3<T>& P)
     {
-		Vec3<T> A(v0.x(), v0.y(), 0);
-		Vec3<T> B(v1.x(), v1.y(), 0);
-		Vec3<T> C(v2.x(), v2.y(), 0);
-
+        Vec3<T> A(v0.x(), v0.y(), 0);
+        Vec3<T> B(v1.x(), v1.y(), 0);
+        Vec3<T> C(v2.x(), v2.y(), 0);
         return SameSide(A, B, C, P) && SameSide(B, C, A, P) && SameSide(C, A, B, P);
+    }
+
+    // 判断平面点P是否在平面三角形内(方程法)
+    bool PointInTriangle2DSup(Vec3<T>& P)
+    {
+        auto v01 = v1 - v0 ;
+        auto v02 = v2 - v0 ;
+        auto v0p = P - v0 ;
+
+        double dot00 = v01 * v01 ;
+        double dot01 = v01 * v02 ;
+        double dot02 = v01 * v0p ;
+        double dot11 = v02 * v02 ;
+        double dot12 = v02 * v0p ;
+
+        double D = (dot00 * dot11 - dot01 * dot01);
+        if(D == 0.0)
+        {
+            return false;
+        }
+        double inverDeno = 1 / D ;
+
+        double u = (dot11 * dot02 - dot01 * dot12) * inverDeno ;
+        if (u < 0 || u > 1)
+        {
+            return false ;
+        }
+
+        double v = (dot00 * dot12 - dot01 * dot02) * inverDeno ;
+        if (v < 0 || v > 1)
+        {
+            return false ;
+        }
+
+        return u + v <= 1 ;
     }
 
 };

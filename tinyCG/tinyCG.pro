@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Orthogon.cpp \
+    TinMesh.cpp \
     linesegment.cpp \
     threeCGAL.cpp \
     tinycg.cpp \
@@ -25,7 +26,9 @@ SOURCES += \
     twoCGAL.cpp
 
 HEADERS += \
+    Epsilon.h \
     Orthogon.hpp \
+    TinMesh.h \
     Vec2.hpp \
     Vec3.hpp \
     linesegment.hpp \
@@ -33,6 +36,7 @@ HEADERS += \
     tinyCG_global.h \
     tinycg.h \
     triangle.hpp \
+    triangleEx.hpp \
     twoCGAL.h
 
 DESTDIR = $$PWD/../bin
@@ -42,3 +46,5 @@ unix {
     target.path = /usr/lib
 }
 !isEmpty(target.path): INSTALLS += target
+
+QMAKE_POST_LINK += $$PWD/install.bat

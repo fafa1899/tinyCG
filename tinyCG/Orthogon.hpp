@@ -63,11 +63,21 @@ public:
         return flag;
     }
 
-    //getter
+    inline bool IsContainsPoint(T x, T y)
+    {
+        return (x>=region[0]) && (x<=region[2]) && (y>=region[1]) && (y<=region[3]);
+    }
+
+    //getter and setter
     inline value_type minX() const { return region[0]; }
     inline value_type minY() const { return region[1]; }
     inline value_type maxX() const { return region[2]; }
     inline value_type maxY() const { return region[3]; }
+
+    inline value_type& minX() { return region[0]; }
+    inline value_type& minY() { return region[1]; }
+    inline value_type& maxX() { return region[2]; }
+    inline value_type& maxY() { return region[3]; }
 
 };
 
